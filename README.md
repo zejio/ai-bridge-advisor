@@ -80,8 +80,11 @@ The installer copies these files into the target project:
 
 - `tools/ai_bridge/`
 - `tools/ai-bridge.py`
+- `b-advisor.ps1`
+- `b-advisor.cmd`
 - `AGENTS.md`
 - `CLAUDE.md`
+- `.claude/prompts/b-advisor.md`
 - `.gitignore` entry for `.ai-bridge/`
 
 It does not copy credentials or API keys.
@@ -89,6 +92,29 @@ It does not copy credentials or API keys.
 ## Basic Usage
 
 Run commands from the target project root.
+
+### Short Commands
+
+Use the short wrapper for daily work:
+
+```powershell
+.\b-advisor "review this architecture before implementation"
+```
+
+This is the same as `advise`.
+
+Other shortcuts:
+
+```powershell
+.\b-advisor review
+.\b-advisor triage "summarize these pytest failures"
+.\b-advisor status
+.\b-advisor sync "Continue from the P9 gate decision. Do not skip risk review."
+```
+
+If you add the project root to your shell `PATH`, you can call `b-advisor` without `.\`.
+
+### Long Commands
 
 Ask both advisors for a decision brief:
 
@@ -129,8 +155,36 @@ py -3.10 tools\ai-bridge.py sync "Continue from the P9 gate decision. Do not ski
 Dry-run without calling Claude or Codex:
 
 ```powershell
-py -3.10 tools\ai-bridge.py --dry-run advise "smoke test bridge setup"
+.\b-advisor --dry-run advise "smoke test bridge setup"
 ```
+
+## Slash-Style Usage
+
+Claude Code:
+
+- The installer adds `.claude/prompts/b-advisor.md`.
+- In projects where Claude Code exposes project prompts as slash commands, use:
+
+```text
+/b-advisor review this architecture before implementation
+```
+
+Codex:
+
+- Codex custom prompts are deprecated, but still available as explicit slash shortcuts.
+- To install the optional prompt:
+
+```powershell
+py -3.10 .\ai-bridge-advisor\scripts\install_project_bridge.py --project E:\YourProject --install-codex-prompt
+```
+
+- Restart Codex, then invoke:
+
+```text
+/prompts:b-advisor review this architecture before implementation
+```
+
+For new reusable behavior, prefer the skill trigger and `AGENTS.md` guidance over deprecated custom prompts.
 
 ## Routing Rules
 

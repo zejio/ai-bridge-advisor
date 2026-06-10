@@ -1,0 +1,23 @@
+# /b-advisor
+
+Run the AI Bridge advisor for the user's task and use the resulting decision as handoff context.
+
+If the user writes `/b-advisor <task>`, run:
+
+```powershell
+.\b-advisor "<task>"
+```
+
+If the user writes `/b-advisor review`, run:
+
+```powershell
+.\b-advisor review
+```
+
+If the user writes `/b-advisor triage <task>`, run:
+
+```powershell
+.\b-advisor triage "<task>"
+```
+
+After the command finishes, read the printed run directory and summarize `.ai-bridge/runs/<timestamp>/decision.md`.

@@ -5,8 +5,9 @@ Use the shared AI Bridge when work should continue cleanly between Codex and Cla
 Before bridge-aware work:
 - Read `.ai-bridge/shared/current.md` if it exists.
 - For substantial coding, architecture, review, trading-risk, paper/live gate, or deployment tasks, run:
-  `py -3.10 tools\ai-bridge.py advise "<task>"`
+  `.\b-advisor "<task>"`
 - Treat `.ai-bridge/runs/<timestamp>/decision.md` as the cross-agent handoff.
+- If the user types `/b-advisor <task>`, treat it as a request to run `.\b-advisor "<task>"`.
 
 Default routing:
 - Claude Sonnet is the only default writer for implementation rounds.
@@ -15,5 +16,5 @@ Default routing:
 
 Continuity:
 - Add durable handoff notes with `py -3.10 tools\ai-bridge.py sync "<note>"`.
-- Check shared state with `py -3.10 tools\ai-bridge.py status`.
+- Check shared state with `.\b-advisor status`.
 - Do not store secrets in `.ai-bridge/`.

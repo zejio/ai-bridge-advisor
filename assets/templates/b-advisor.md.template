@@ -1,0 +1,12 @@
+---
+description: Run AI Bridge advisors and write a shared decision brief
+argument-hint: TASK="what should advisors review?"
+---
+
+Run this command from the project root:
+
+```powershell
+.\b-advisor "$ARGUMENTS"
+```
+
+Then read the generated `.ai-bridge/runs/<timestamp>/decision.md` and summarize the advisor decision, risks, blocking questions, and recommended next step.

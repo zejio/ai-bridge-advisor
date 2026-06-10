@@ -49,13 +49,32 @@ It does not copy secrets and does not commit runtime state.
 Use these commands from the project root:
 
 ```powershell
+.\b-advisor "<task>"
+.\b-advisor review
+.\b-advisor triage "<logs or issue>"
+.\b-advisor status
+.\b-advisor sync "<handoff note>"
+```
+
+The default shortcut action is `advise`, so `.\b-advisor "review this architecture"` is equivalent to:
+
+```powershell
 py -3.10 tools\ai-bridge.py advise "<task>"
+```
+
+Long-form commands remain available:
+
+```powershell
 py -3.10 tools\ai-bridge.py implement "<task>"
 py -3.10 tools\ai-bridge.py review
 py -3.10 tools\ai-bridge.py triage "<logs or issue>"
 py -3.10 tools\ai-bridge.py status
 py -3.10 tools\ai-bridge.py sync "<handoff note>"
 ```
+
+For Claude-style prompts, `/b-advisor <task>` should be treated as `.\b-advisor "<task>"`.
+
+For Codex custom prompts, install the optional prompt and invoke `/prompts:b-advisor <task>`. Custom prompts are deprecated in Codex, so prefer the skill's automatic triggering when possible.
 
 Routing defaults:
 - `advise`: Opus + GPT-5.5 read-only advisors
