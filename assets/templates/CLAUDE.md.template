@@ -1,0 +1,19 @@
+# WorldTrading AI Bridge Instructions
+
+Use the shared AI Bridge when work should continue cleanly between Claude Code and Codex.
+
+Before bridge-aware work:
+- Read `.ai-bridge/shared/current.md` if it exists.
+- For substantial coding, architecture, review, trading-risk, paper/live gate, or deployment tasks, run:
+  `py -3.10 tools\ai-bridge.py advise "<task>"`
+- Treat `.ai-bridge/runs/<timestamp>/decision.md` as the cross-agent handoff.
+
+Default routing:
+- Claude Sonnet is the only default writer for implementation rounds.
+- Claude Opus and GPT-5.5 are advisors/reviewers and must stay read-only.
+- Use `gpt-5.4-mini` for read-only scan, test triage, and summarization.
+
+Continuity:
+- Add durable handoff notes with `py -3.10 tools\ai-bridge.py sync "<note>"`.
+- Check shared state with `py -3.10 tools\ai-bridge.py status`.
+- Do not store secrets in `.ai-bridge/`.
